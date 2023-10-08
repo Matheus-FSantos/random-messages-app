@@ -30,9 +30,8 @@ class MyAppState extends ChangeNotifier {
 
   void getNextWord() {
     current = WordPair.random();
-    notifyListeners();
+    notifyListeners(); /* informa para os "ouvintes" do estado que é para atualizar o valor */
   }
-
 
 }
 
