@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'Random Messages App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         home: MyHomePage(),
       ),
@@ -45,7 +45,6 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Text('A random idea:'),
           BigCard(pair: pair),
           ElevatedButton(
             onPressed: () => appState.getNextWord(),
@@ -58,7 +57,7 @@ class MyHomePage extends StatelessWidget {
 }
 
 class BigCard extends StatelessWidget {
-  const BigCard({
+  const BigCard ({
     super.key,
     required this.pair,
   });
@@ -67,6 +66,19 @@ class BigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(pair.asLowerCase);
+    final theme = Theme.of(context);
+    final textStyle = theme.textTheme.displaySmall!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
+    
+    return Card (
+      elevation: 5,
+      shadowColor: Colors.indigo[900],
+      color: theme.colorScheme.primary,
+      child: Padding (
+        padding: const EdgeInsets.all(20.0),
+        child: Text(pair.asLowerCase, style: textStyle),
+      ),
+    );
   }
 }
